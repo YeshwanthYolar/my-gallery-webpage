@@ -22,14 +22,34 @@
     <script>
         const gallery = document.getElementById('gallery');
         const imageCount = 11; // Number of images
+        const formats = ['jpg', 'png', 'webp']; // Supported formats
+
         for (let i = 1; i <= imageCount; i++) {
-            const photoDiv = document.createElement('div');
-            photoDiv.className = 'photo';
-            const img = document.createElement('img');
-            img.src = `images/photo${i}.jpg`;
-            img.alt = `Photo ${i}`;
-            photoDiv.appendChild(img);
-            gallery.appendChild(photoDiv);
+            let isImageAdded = false;
+
+            formats.forEach(format => {
+                if (!isImageAdded) {
+                    const img = new Image();
+                    img.src = `images/photo${i}.${format}`;
+                    img.alt = `Photo ${i}`;
+                    
+                    // Check if the image loads successfully
+                    img.onload = () => {
+                        if (!isImageAdded) {
+                            const photoDiv = document.createElement('div');
+                            photoDiv.className = 'photo';
+                            photoDiv.appendChild(img);
+                            gallery.appendChild(photoDiv);
+                            isImageAdded = true;
+                        }
+                    };
+
+                    // Ignore errors if the image file does not exist
+                    img.onerror = () => {
+                        // No action needed, try the next format
+                    };
+                }
+            });
         }
 
         document.querySelectorAll('.photo img').forEach(img => {
