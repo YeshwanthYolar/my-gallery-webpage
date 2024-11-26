@@ -3,86 +3,118 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f7f7f7;
+    background: linear-gradient(to bottom right, #7560a0, #7db9e8); /* Elegant gradient background */
     color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+header {
+    background: linear-gradient(90deg, #7560a0, #7db9e8);
+    padding: 40px 20px;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.header-content {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-header {
-    background-color: #4a90e2;
-    padding: 20px;
-    width: 100%;
-    text-align: center;
-    color: #fff;
-}
-
 h1 {
     font-weight: 700;
     margin: 0;
-    font-size: 2.5rem;
+    font-size: 3.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+/* Contact Details */
+.contact-details {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    text-align: center; /* Centers the contact details */
+}
+
+.contact-details p {
+    margin: 5px 0;
+}
+
+.contact-details a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.contact-details a:hover {
+    text-decoration: underline;
+}
+
+/* Add styling to the header content for better separation */
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Gallery Styles */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 15px;
-    padding: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Auto-fit images */
+    gap: 30px; /* Increased gap for more space between images */
+    padding: 40px 20px; /* Padding to ensure no images touch the edge */
     width: 100%;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
+    background: #ffffff; /* Clean white background for gallery */
+    border-radius: 15px; /* Rounded corners for gallery section */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    box-sizing: border-box; /* Ensures padding is included in the element's total width */
 }
 
 .photo {
     position: relative;
     overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
+    border-radius: 15px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    background: #ffffff;
 }
 
 .photo:hover {
-    transform: scale(1.05);
+    transform: scale(1.05); /* Subtle scaling effect */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
 }
 
 .photo img {
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 10px;
-}
-
-/* Lightbox Styles */
-.lightbox {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    animation: fadeIn 0.5s ease-in-out;
-}
-
-.lightbox img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 5px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    object-fit: cover; /* Ensures image is cropped properly within the container */
+    max-width: 100%; /* Ensure the image does not exceed its container's width */
 }
 
 /* Footer Styles */
 footer {
-    background-color: #4a90e2;
+    background: linear-gradient(90deg, #7db9e8, #7560a0);
     color: #fff;
     text-align: center;
-    padding: 10px;
+    padding: 20px;
     width: 100%;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
     margin-top: auto;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Animations */
@@ -92,5 +124,24 @@ footer {
     }
     to {
         opacity: 1;
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.8rem;
+    }
+
+    footer {
+        font-size: 1rem;
+    }
+
+    .gallery {
+        padding: 20px;
+    }
+
+    .photo:hover {
+        transform: scale(1.03); /* Slightly reduce hover effect on smaller screens */
     }
 }
