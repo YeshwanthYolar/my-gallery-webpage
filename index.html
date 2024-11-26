@@ -1,50 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photo Gallery</title>
+    <title>Modern Photo Gallery</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <h1>My Photo Gallery</h1>
-    <div class="gallery">
-        <div class="photo">
-            <img src="images/photo1.jpg" alt="Photo 1">
-        </div>
-        <div class="photo">
-            <img src="images/photo2.jpg" alt="Photo 2">
-        </div>
-        <div class="photo">
-            <img src="images/photo3.jpg" alt="Photo 3">
-        </div>
-        <div class="photo">
-            <img src="images/photo4.jpg" alt="Photo 4">
-        </div>
-        <div class="photo">
-            <img src="images/photo5.jpg" alt="Photo 5">
-        </div>
-        <div class="photo">
-            <img src="images/photo6.jpg" alt="Photo 6">
-        </div>
-        <div class="photo">
-            <img src="images/photo7.jpg" alt="Photo 7">
-        </div>
-        <div class="photo">
-            <img src="images/photo8.jpg" alt="Photo 8">
-        </div>
-        <div class="photo">
-            <img src="images/photo9.jpg" alt="Photo 9">
-        </div>
-        <div class="photo">
-            <img src="images/photo10.jpg" alt="Photo 10">
-        </div>
-        <div class="photo">
-            <img src="images/photo11.jpg" alt="Photo 11">
-        </div>
-        <!-- Add more photos as needed -->
-    </div>
+    <header>
+        <h1>My Stunning Photo Gallery</h1>
+    </header>
+    <section class="gallery" id="gallery"></section>
+
+    <footer>
+        <p>&copy; 2024 My Photo Gallery. All rights reserved.</p>
+    </footer>
+
     <script>
+        const gallery = document.getElementById('gallery');
+        const imageCount = 11; // Number of images
+        for (let i = 1; i <= imageCount; i++) {
+            const photoDiv = document.createElement('div');
+            photoDiv.className = 'photo';
+            const img = document.createElement('img');
+            img.src = `images/photo${i}.jpg`;
+            img.alt = `Photo ${i}`;
+            photoDiv.appendChild(img);
+            gallery.appendChild(photoDiv);
+        }
+
         document.querySelectorAll('.photo img').forEach(img => {
             img.onclick = () => {
                 const lightbox = document.createElement('div');
@@ -56,7 +43,6 @@
             };
         });
     </script>
-    
-    
 </body>
+
 </html>
