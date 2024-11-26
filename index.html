@@ -19,50 +19,46 @@
         <p>&copy; 2024 My Photo Gallery. All rights reserved.</p>
     </footer>
 
-    <script>
+    <<script>
         const gallery = document.getElementById('gallery');
-        const imageCount = 11; // Number of images
+        const imageCount = 25; // Number of images
         const formats = ['jpg', 'png', 'webp']; // Supported formats
-
+    
         for (let i = 1; i <= imageCount; i++) {
-            let isImageAdded = false;
-
-            formats.forEach(format => {
-                if (!isImageAdded) {
-                    const img = new Image();
-                    img.src = `images/photo${i}.${format}`;
-                    img.alt = `Photo ${i}`;
-                    
-                    // Check if the image loads successfully
-                    img.onload = () => {
-                        if (!isImageAdded) {
-                            const photoDiv = document.createElement('div');
-                            photoDiv.className = 'photo';
-                            photoDiv.appendChild(img);
-                            gallery.appendChild(photoDiv);
-                            isImageAdded = true;
-                        }
-                    };
-
-                    // Ignore errors if the image file does not exist
-                    img.onerror = () => {
-                        // No action needed, try the next format
-                    };
-                }
-            });
+            for (const format of formats) {
+                const img = new Image();
+                img.src = `images/photo${i}.${format}`;
+                img.alt = `Photo ${i} (${format})`;
+    
+                // Add image to the gallery if it loads successfully
+                img.onload = () => {
+                    const photoDiv = document.createElement('div');
+                    photoDiv.className = 'photo';
+                    photoDiv.appendChild(img);
+                    gallery.appendChild(photoDiv);
+                };
+    
+                // Ignore errors if an image file is missing for a specific format
+                img.onerror = () => {
+                    // No action needed; simply skip this image and format
+                };
+            }
         }
-
-        document.querySelectorAll('.photo img').forEach(img => {
-            img.onclick = () => {
+    
+        // Add lightbox functionality
+        document.addEventListener('click', (e) => {
+            if (e.target.tagName === 'IMG') {
                 const lightbox = document.createElement('div');
                 lightbox.className = 'lightbox';
-                const imgClone = img.cloneNode();
+                const imgClone = e.target.cloneNode();
                 lightbox.appendChild(imgClone);
                 document.body.appendChild(lightbox);
                 lightbox.onclick = () => document.body.removeChild(lightbox);
-            };
+            }
         });
     </script>
+    
+    
 </body>
 
 </html>
